@@ -4,8 +4,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Installing meson and ninja first for optimal intermediary cached images
 RUN apt-get update
-RUN apt-get -y install python3-pip
-RUN pip3 install --upgrade pip && pip3 install meson ninja
+RUN apt-get -y install pipx
+RUN pipx install meson ninja
+ENV PATH="$PATH:/root/.local/bin"
 
 RUN apt-get -y install \
         git \
